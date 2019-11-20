@@ -1,1 +1,45 @@
-e通天塔
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /**
+        解释：js的test()方法用于检测一个字符串是否匹配某个格式。
+        语法：RegExpObject.test(string)
+        返回值：如果String中含有RegExpObject中匹配的字符返回true，否则返回false
+    
+    */
+    console.log(/123/.test('1234567')); // true
+    console.log(/123/.test('2345678')); // false
+
+
+    /**
+        正则小知识：
+        ^:起始位置
+        $:结束位置
+        \b:单词边界
+    */
+    console.log(/^HO/.test('HO1011')); // true
+    console.log(/^MU/.test('H01002')); // false
+    console.log(/^0MU/.test('MU1002')); // false
+
+    console.log(/com$/.test('https:www.baidu.com')); // true
+    console.log(/com$/.test('https:www.baidu.com/')); // false
+    console.log(/com$/.test('https:www.baidu.com/s')); // false
+
+    console.log(/\bis\b/.test('this is a pen')); // true
+    console.log(/\bis\b/.test('this')); // false
+
+    // 参考网址：https://blog.csdn.net/qq_41261490/article/details/82966077
+</script>
+
+</html>
