@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>typeof ! && !!</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /**
+        !:可将变量转换为Boolean类型。
+        !!:用来做类型判断,可将变量转换为Boolean类型。
+    */
+    console.log(null == true); // false
+    console.log(!null == true); // true
+
+    let a = 'aa';
+    console.log(typeof a); // string
+    console.log(!!a == true); // true
+    console.log(typeof !!a); // boolean
+
+    let b = null;
+    console.log(typeof b); // object
+    console.log(!!b == true); // false
+    console.log(typeof !!b); // boolean
+</script>
+
+</html>

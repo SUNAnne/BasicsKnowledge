@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Objec.keys()介绍及应用</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /**
+        解释：Object.keys()方法会返回一个由一个给定对象自身可枚举属性组成的数组，数组中属性名的排列和使用for...in循环遍历该对象时返回的顺序一致。
+        语法：Object.keys(obj);
+        参数：要返回其枚举自身属性的对象。
+        返回值：一个表示给定对象的所有可枚举属性的字符串数组。
+    */
+    let originalArr = {
+        aircraftNo: "6602",
+        arriveStation: "PVG",
+        contentCategory: "1",
+        dataResource: "1",
+        departStation: "ACX",
+        flightNo: "HO1012",
+        happenDate: "2019-11-06",
+        happenLocation: "place",
+        id: "79a58aef0bf5",
+        isAnonymous: "0",
+        method: "post",
+        reportContent: "001---------",
+        reportNo: "2019110616",
+        reportStatus: "0",
+        reportTitle: "001",
+        reporterContact: "17893333365",
+        reporterDeptId: "1044A2100009CBVI12345",
+        reporterName: "朱婷"
+    };
+    let objectKeysArr = Object.keys(originalArr);
+    console.log(objectKeysArr); // ["aircraftNo", "arriveStation", "contentCategory", "dataResource", "departStation", "flightNo", "happenDate", "happenLocation", "id", "isAnonymous", "method", "reportContent", "reportNo", "reportStatus", "reportTitle", "reporterContact", "reporterDeptId", "reporterName"]
+
+    let originalArr1 = ['a', 'b', 'c'];
+    let indexArr = Object.keys(originalArr1);
+    console.log(indexArr); // ["0", "1", "2"]
+
+
+    /**
+        Object.keys(obj).forEach():遍历
+        Object.keys(obj).forEach((item,index) => {
+            obj:源对象
+            Object.keys(obj):由对象obj的key组成的一个数组
+            item:对象key数组中的每一项
+            obj[item]:对象的每一个key对应的值
+            index:数组对象的下标
+        })
+    */
+    Object.keys(originalArr).forEach((item, index) => {
+        console.log(`${item} : ${originalArr[item]} ----- 下标：${index}`);
+    })
+    // 打印内容
+    // aircraftNo: 6602 ----- 下标：0
+    // arriveStation: PVG----- 下标：1
+    // contentCategory: 1 ----- 下标：2
+    // dataResource: 1 ----- 下标：3
+    // departStation: ACX----- 下标：4
+    // flightNo: HO1012----- 下标：5
+    // happenDate: 2019 - 11 - 06 ----- 下标：6
+    // happenLocation: place----- 下标：7
+    // id: 79a58aef0bf5----- 下标：8
+    // isAnonymous: 0 ----- 下标：9
+    // method: post----- 下标：10
+    // reportContent: 001--------- ----- 下标：11
+    // reportNo: 2019110616 ----- 下标：12
+    // reportStatus: 0 ----- 下标：13
+    // reportTitle: 001 ----- 下标：14
+    // reporterContact: 17893333365 ----- 下标：15
+    // reporterDeptId: 1044A2100009CBVI12345----- 下标：16
+    // reporterName: 朱婷----- 下标：17
+
+
+    /**
+        Object.keys()常用的应用场景：在请求时，前端会向后端传些参数，参数一般是一个obj形式，通过Object.keys().forEach()删除obj中的key为null、undefined的。
+        注意：
+        使用forEach遍历数组，会改变原始数组数据。建议在遍历之前把原数据复制一遍，遍历时对复制的数据进行操作，不建议直接对原数据直接操作哦。（使用：Object.assign({}, 原数据)复制数据）
+    */
+    let originalArr2 = {
+        aircraftNo: "6602",
+        arriveStation: null,
+        contentCategory: "1",
+        dataResource: "1",
+        departStation: null,
+        flightNo: "HO1012",
+        happenDate: "2019-11-06",
+        happenLocation: "place",
+        id: "79a58aef0bf5",
+        isAnonymous: ' ',
+        method: "post",
+        reportContent: "001---------",
+        reportNo: "2019110616",
+        reportStatus: undefined,
+        reportTitle: "",
+        reporterContact: "17893333365",
+        reporterDeptId: "1044A2100009CBVI12345",
+        reporterName: "朱婷"
+    };
+    let newOriginalArr2 = Object.assign({}, originalArr2);
+    Object.keys(newOriginalArr2).forEach(item => {
+        if (newOriginalArr2[item] == null || newOriginalArr2[item] == undefined) {
+            delete newOriginalArr2[item];
+        }
+    })
+    console.log("处理后的数据：", newOriginalArr2, "原始数据：", originalArr2);
+    // 打印结果newOriginalArr2:
+    // {
+    //     aircraftNo: "6602",
+    //     contentCategory: "1",
+    //     dataResource: "1",
+    //     flightNo: "HO1012",
+    //     happenDate: "2019-11-06",
+    //     happenLocation: "place",
+    //     id: "79a58aef0bf5",
+    //     isAnonymous: " ",
+    //     method: "post",
+    //     reportContent: "001---------",
+    //     reportNo: "2019110616",
+    //     reportTitle: "",
+    //     reporterContact: "17893333365",
+    //     reporterDeptId: "1044A2100009CBVI12345",
+    //     reporterName: "朱婷"
+    // }
+
+</script>
+
+</html>

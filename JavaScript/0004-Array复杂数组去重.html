@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Array复杂数组去重</title>
+</head>
+
+<body>
+
+</body>
+<script>
+
+    /**
+        复杂数组去重：
+        originalArr:原始的数据（固定不变的）
+        nowArr：现在需要使用的数据
+        说明：originalArr 与 nowArr根据dealDeptId进行对比，如果originalArr 与 nowArr的dealDeptId相同，则删除重复的那一条数据,使得最终得到的数据是没有重复的。
+    */
+    let originalArr = [
+        {
+            compltClassify: "020202",
+            createDate: "2019-10-30 11:43:00",
+            createUserId: "1044AA10000000001PYZ",
+            createUserName: null,
+            dealDeptId: "1044AA1000000000007D",
+            dealDeptName: "商务部",
+            id: "04a82415da114e0bbd1f84ee4f58c681",
+            isBJ: null,
+            mergeId: "b9c1c246443a41d88bb3e2cf94862529",
+            primaryResponsibility: "0",
+            processStatus: "2",
+            status: "1",
+        },
+        {
+            compltClassify: "040303",
+            createDate: "2019-10-30 11:43:53",
+            createUserId: "1044AA10000000001PYZ",
+            createUserName: null,
+            dealDeptId: "1044A510000000331G9V",
+            dealDeptName: "江苏分公司",
+            id: "e14d472899d147858dcce935d01f6ac6",
+            isBJ: null,
+            mergeId: "b9c1c246443a41d88bb3e2cf94862529",
+            primaryResponsibility: "0",
+            processStatus: "2",
+            status: "1",
+        },
+        {
+            compltClassify: "020202",
+            createDate: "2019-10-30 11:43:53",
+            createUserId: "1044AA10000000001PYZ",
+            createUserName: null,
+            dealDeptId: "1044A21000000009CBVI",
+            dealDeptName: "品牌品质管理部",
+            id: "cfe7b925e5694b67bc6845d39b4753e6",
+            isBJ: null,
+            mergeId: "b9c1c246443a41d88bb3e2cf94862529",
+            primaryResponsibility: "0",
+            processStatus: "2",
+            status: "1",
+        },
+        {
+            compltClassify: "030202",
+            createDate: "2019-10-30 11:43:00",
+            createUserId: "1044AA10000000001PYZ",
+            createUserName: null,
+            dealDeptId: "1044A2100000000ENEXD",
+            dealDeptName: "地面服务部",
+            id: "d5333faa368d471eae751e10d8bcdbb1",
+            isBJ: null,
+            mergeId: "b9c1c246443a41d88bb3e2cf94862529",
+            primaryResponsibility: "1",
+            processStatus: "2",
+            status: "1",
+        }
+    ];
+
+    let nowArr = [
+        {
+            compltClassify: "020202",
+            createDate: "2019-10-30 11:43:00",
+            createUserId: "1044AA10000000001PYZ",
+            createUserName: null,
+            dealDeptId: "1044AA1000000000007D",
+            dealDeptName: "商务部",
+            id: "04a82415da114e0bbd1f84ee4f58c681",
+            isBJ: null,
+            mergeId: "b9c1c246443a41d88bb3e2cf94862529",
+            primaryResponsibility: "0",
+            processStatus: "2",
+            status: "1",
+        },
+        {
+            compltClassify: "040303",
+            createDate: "2019-10-30 11:43:53",
+            createUserId: "1044AA10000000001PYZ",
+            createUserName: null,
+            dealDeptId: "1044A510000000331G9V",
+            dealDeptName: "江苏分公司",
+            id: "e14d472899d147858dcce935d01f6ac6",
+            isBJ: null,
+            mergeId: "b9c1c246443a41d88bb3e2cf94862529",
+            primaryResponsibility: "0",
+            processStatus: "2",
+            status: "1",
+        },
+        {
+            compltClassify: "020202",
+            createDate: "2019-10-30 11:43:53",
+            createUserId: "1044AA10000000001PYZ",
+            createUserName: null,
+            dealDeptId: "1044A21000000009CBVI",
+            dealDeptName: "品牌品质管理部",
+            id: "cfe7b925e5694b67bc6845d39b4753e6",
+            isBJ: null,
+            mergeId: "b9c1c246443a41d88bb3e2cf94862529",
+            primaryResponsibility: "0",
+            processStatus: "2",
+            status: "1",
+        },
+        {
+            compltClassify: "030202",
+            createDate: "2019-10-30 11:43:00",
+            createUserId: "1044AA10000000001PYZ",
+            createUserName: null,
+            dealDeptId: "1044A2100000000ENEXD",
+            dealDeptName: "地面服务部",
+            id: "d5333faa368d471eae751e10d8bcdbb1",
+            isBJ: null,
+            mergeId: "b9c1c246443a41d88bb3e2cf94862529",
+            primaryResponsibility: "1",
+            processStatus: "2",
+            status: "1",
+        },
+        {
+            compltClassify: "020202",
+            dealDeptId: "1044AA1000000000006X",
+            dealDeptName: "客舱部",
+            id: "d0f7f47bdfbcb5db7de175e908c5d4fb",
+            primaryResponsibility: "0",
+        }
+    ];
+
+    // 使用slice()的目的：复制一个新的数据，对复制的数据进行处理，不直接改变原数据。
+    let copyOriginalArr = originalArr.slice();
+    let copyNowArr = nowArr.slice();
+    copyOriginalArr.map(item => {
+        copyNowArr.filter((item1, i1) => {
+            if (item1.dealDeptId == item.dealDeptId) {
+                copyNowArr.splice(i1, 1);
+            }
+        });
+    })
+    console.log(copyNowArr);
+    // 打印结果
+    // [
+    //     {
+    //         compltClassify: "020202",
+    //         dealDeptId: "1044AA1000000000006X",
+    //         dealDeptName: "客舱部",
+    //         id: "d0f7f47bdfbcb5db7de175e908c5d4fb",
+    //         primaryResponsibility: "0"
+    //     }
+    // ]
+
+
+    /**
+        数组的filter方法不会改变原数据。
+    */
+
+    /**
+       数组slice()相关知识点：
+       解释：slice()方法可从已有的数组中返回选定的元素。
+       语法：arrarObject.slice(start,end);
+       参数说明：
+       satrt：必需。规定从何处开始选取。如果是负数，那么它规定从数组尾部开始算起的位置，也就是说，-1指最后一个元素，-2指倒数第二个元素，以此类推。
+       end：可选。规定从何处结束选取。该参数是数组片段结束处的数组下标。如果没有指定该参数，那么切分的数组包含从start到数组结束的所有元素。如果这个参数是个负数，那么它规定的是从数组尾部开始算起的元素。
+       返回值：返回一个新的数组，包含从start到end（不包括该元素）的arrayObject中的元素。
+       说明：
+       1.该方法不会修改数组，而是返回一个新的子数组。
+       2.如果想删除数组中的某一段元素，应该使用方法Array.splice()。
+       3.如果end未被规定，那么slice()方法会选取从start到数组结尾的所有元素。
+   */
+</script>
+
+</html>
