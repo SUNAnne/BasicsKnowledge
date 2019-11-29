@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>new Map()</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /**
+     * new Map（）
+     * ES6新增了Map数据类型，Map对象保存键值对。对象的{}的key只能是String类型，但是Map可以设置key为多种数据类型(任何值对象或者原始值都可以作为一个键或一个值)。
+     * 设置属性使用：set eg：obj.set(key,value);
+     * 判断对象是否含有某个属性：has eg:obj.has(key);
+     * 获取某对象的属性：get eg：obj.get(key)
+     * 移除Map对象所有的键/值对的数量：obj.clear()
+     * 
+     * 
+    */
+
+    // Demo1
+    let obj1 = new Map();
+    obj1.set(1, 'black');
+    obj1.set('color', 3);
+    obj1.set({ 1: 'x' }, 3);
+    console.log(obj1); // Map {1 => 'black','color => 3,{1:'x'} => 3}
+    console.log(typeof obj1); // object
+
+    obj1.forEach((item, index, obj1) => {
+        console.log(item, index, obj1);
+        // 打印结果
+        // black 1 Map {1 => 'black','color => 3,{1:'x'} => 3}
+        // 3 "color" Map {1 => 'black','color => 3,{1:'x'} => 3} 
+        // 3 {1:'x'} Map {1 => 'black','color => 3,{1:'x'} => 3}
+    })
+
+    let result1 = obj1.has(1);
+    console.log(result1); // true
+
+    let result2 = obj1.get(1);
+    console.log(result2); // "black"
+
+    let result3 = obj1.clear();
+    console.log(result3, obj1); // undefined  Map(0) {}
+
+</script>
+
+</html>
