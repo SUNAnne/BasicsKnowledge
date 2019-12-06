@@ -1,1 +1,90 @@
-1
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>text-transform</title>
+    <style>
+        /* 默认值none */
+        .none {
+            text-transform: none;
+        }
+
+        /* 首字母大写capitalize */
+        .capitalize {
+            text-transform: capitalize;
+        }
+
+        /* 仅有大写字母（全部为大写字母）uppercase */
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        /* 仅有小写字母（全部为小写字母）lowercase */
+        .lowercase {
+            text-transform: lowercase;
+        }
+
+        /* 继承父元素的text-transform的属性inherit */
+        .inherit {
+            text-transform: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        text-transform:控制文本的大小写
+        参数：
+        none：默认值；定义带有小写字母和大写字母的标准文本。
+        capitalize:文本中每个单词以大写字母开头。
+        uppercase：定义仅有大写字母。
+        lowercase：定义无大写字母，仅有小写字母。
+        inherit：规定应该从父元素继承text-transform属性的值。
+     -->
+
+    <!-- 默认值none -->
+    <div class="none">WORLD BIG</div>
+    <div class="none">world big</div>
+    <div class="none">WoRlD BiG</div>
+    <div class="none">woRlD biG</div>
+
+    <hr>
+
+    <!-- 首字母大写capitalize -->
+    <div class="capitalize">WORLD BIG</div>
+    <div class="capitalize">world big</div>
+    <div class="capitalize">WoRlD BiG</div>
+    <div class="capitalize">woRlD biG</div>
+
+    <hr>
+
+    <!-- 仅有大写字母（全部为大写字母）uppercase -->
+    <div class="uppercase">WORLD BIG</div>
+    <div class="uppercase">world big</div>
+    <div class="uppercase">WoRlD BiG</div>
+    <div class="uppercase">woRlD biG</div>
+
+    <hr>
+
+    <!-- 仅有小写字母（全部为小写字母）lowercase -->
+    <div class="lowercase">WORLD BIG</div>
+    <div class="lowercase">world big</div>
+    <div class="lowercase">WoRlD BiG</div>
+    <div class="lowercase">woRlD biG</div>
+
+    <hr>
+
+    <!-- 继承父元素的text-transform的属性inherit -->
+    <div class="uppercase">
+        <div class="inherit">WORLD BIG</div>
+        <div class="inherit">world big</div>
+        <div class="inherit">WoRlD BiG</div>
+        <div class="inherit">woRlD biG</div>
+    </div>
+
+</body>
+
+</html>
