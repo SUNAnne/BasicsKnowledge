@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实时展示当前时间</title>
+</head>
+
+<body>
+    <div id="time"></div>
+    <div id="time1"></div>
+</body>
+<script>
+    /**
+     * 简介：
+     * 下面用js简单的实现 在页面中实时展示当前的时间； 
+     * 
+     */
+    let time = new Date();
+    setInterval(() => {
+        time = new Date();
+        document.getElementById('time').innerHTML = `标准时间：${time}`; // 标准时间：Wed Apr 22 2020 18:53:43 GMT+0800 (中国标准时间)
+        document.getElementById('time1').innerHTML = `转化后的时间：${time.toLocaleDateString()} ${time.toLocaleTimeString()}`; // 转化后的时间：2020/4/22 下午6:54:25
+    }, 1000)
+    document.getElementById('time').innerHTML = `标准时间：${time}`;
+    document.getElementById('time1').innerHTML = `转化后的时间：${time.toLocaleDateString()} ${time.toLocaleTimeString()}`
+    console.log(new Date()); // Wed Apr 22 2020 18:53:21 GMT+0800 (中国标准时间)
+</script>
+
+</html>
